@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 import App from './App'
 import './index.css'
 
@@ -27,4 +28,9 @@ console.log(
 	'color: #8ab4f8; font-family: monospace;'
 )
 
-createRoot(document.getElementById('root')!).render(<App />)
+createRoot(document.getElementById('root')!).render(
+	<>
+		<App />
+		<Analytics />
+	</>
+)
