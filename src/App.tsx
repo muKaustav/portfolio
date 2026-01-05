@@ -230,9 +230,9 @@ export default function App() {
 							lineHeight: 1.75,
 							marginBottom: 0,
 						}}>
-						Outside of work, I play the guitar, enjoy story shooters like
-						Counter Strike, Call of Duty, and I'm an amateur cinephile. I also
-						love reading and have worked through a considerable collection of
+						Outside of work, I play the guitar, enjoy FPS games like Counter
+						Strike, Call of Duty, and I'm an amateur cinephile. I also love
+						reading and have worked through a considerable collection of
 						Murakami's literary works.
 					</Paragraph>
 				</section>
