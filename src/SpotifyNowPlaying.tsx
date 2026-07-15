@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Typography, Space } from 'antd'
-import { CustomerServiceOutlined } from '@ant-design/icons'
+import { Typography } from 'antd'
+import { m3, type M3ColorScheme } from './App'
 
 const { Text, Link } = Typography
 
@@ -13,13 +13,7 @@ interface SpotifyTrack {
 }
 
 interface SpotifyNowPlayingProps {
-  colors: {
-    primary: string
-    onSurface: string
-    onSurfaceVariant: string
-    surfaceContainer: string
-    outline: string
-  }
+  colors: M3ColorScheme
 }
 
 const SPOTIFY_API_URL = '/api/spotify/now-playing'
@@ -72,29 +66,36 @@ export default function SpotifyNowPlaying({ colors }: SpotifyNowPlayingProps) {
         gap: 12,
         padding: '12px 16px',
         background: colors.surfaceContainer,
-        borderRadius: 12,
+        borderRadius: m3.shape.medium,
         marginTop: 16,
+        transition: `background ${m3.motion.duration.medium2} ${m3.motion.easing.standard}`,
       }}
     >
       {track.albumArt ? (
         <img
           src={track.albumArt}
           alt={track.name}
-          style={{ width: 48, height: 48, borderRadius: 8 }}
+          style={{ width: 48, height: 48, borderRadius: m3.shape.small }}
         />
       ) : (
         <div
           style={{
             width: 48,
             height: 48,
-            borderRadius: 8,
-            background: colors.outline,
+            borderRadius: m3.shape.small,
+            background: colors.surfaceContainerHighest,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <CustomerServiceOutlined style={{ fontSize: 20, color: colors.onSurfaceVariant }} />
+          <span
+            className="material-symbols-rounded"
+            style={{ fontSize: 20, color: colors.onSurfaceVariant }}
+            aria-hidden="true"
+          >
+            music_note
+          </span>
         </div>
       )}
       <div style={{ flex: 1, minWidth: 0 }}>
@@ -104,13 +105,19 @@ export default function SpotifyNowPlaying({ colors }: SpotifyNowPlayingProps) {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: '50%',
+                borderRadius: m3.shape.full,
                 background: '#1DB954',
                 animation: 'pulse 2s infinite',
               }}
             />
           )}
-          <Text style={{ color: colors.onSurfaceVariant, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          <Text
+            style={{
+              ...m3.typescale.labelSmall,
+              color: colors.onSurfaceVariant,
+              textTransform: 'uppercase',
+            }}
+          >
             {track.isPlaying ? 'Now Playing' : 'Last Played'}
           </Text>
         </div>
@@ -118,9 +125,8 @@ export default function SpotifyNowPlaying({ colors }: SpotifyNowPlayingProps) {
           href={track.url}
           target="_blank"
           style={{
+            ...m3.typescale.titleSmall,
             color: colors.onSurface,
-            fontWeight: 500,
-            fontSize: 14,
             display: 'block',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -129,7 +135,7 @@ export default function SpotifyNowPlaying({ colors }: SpotifyNowPlayingProps) {
         >
           {track.name}
         </Link>
-        <Text style={{ color: colors.onSurfaceVariant, fontSize: 13 }}>
+        <Text style={{ ...m3.typescale.bodyMedium, color: colors.onSurfaceVariant }}>
           {track.artist}
         </Text>
       </div>
